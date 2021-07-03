@@ -4,15 +4,15 @@ const path = require('path')
 const app = express();
 
 app.set('view engine', 'pug');
-app.set('vews', 'views');
+app.set('views', 'views');
 
-const adminRoutes = require('./admin.js');
+const adminData = require('./admin');
 const shopRoutes = require('./shop.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin', adminRoutes);
+app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
